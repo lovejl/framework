@@ -1,1 +1,1 @@
-my framework
+my framework 1.0
