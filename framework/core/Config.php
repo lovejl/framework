@@ -7,7 +7,7 @@ class Config
 	
 	public function get_config($name = '', $path = 'config')
 	{
-		if(!self::$_config[$path])
+		if(!isset(self::$_config[$path]))
 		{
 			if(file_exists(APP_PATH . '/config/' . $path . '.php'))
 			{

@@ -24,10 +24,10 @@ class AutoLoader
 			return;
 		}
 		self::$_is_register = TRUE;
-		spl_autoload_register(array($this, 'autoLoaderInit'));
+		spl_autoload_register(array($this, 'frameAutoLoader'));
     }
 	
-	public function autoLoaderInit($class_name)
+	public function frameAutoLoader($class_name)
 	{
 		if(strpos($class_name, '\\') === FALSE)
 		{

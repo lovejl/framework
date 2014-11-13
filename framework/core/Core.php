@@ -20,10 +20,51 @@ class Core
 	 */
 	public function frameInit()
 	{
+		//SET AUTO LOADER
 		include 'core/AutoLoader.php';
 		\core\AutoLoader::getInstance()->registerAutoloader();
+		//GET CONFIG
 		$config = new \core\Config();
-		var_dump($config->get_config('xxxx'));
+		//SET FRAME EXCEPTIONS
+		if($config->get_config('frame_exception') == 'on')
+		{
+			\core\Exceptions::getInstance()->registerExceptions();
+		}
+		//SET ENVIRONMENT
+		\core\Common::getInstance()->setFrameEnvironment($config->get_config('frame_environment'));
+		//SET TIME ZONE
+		\core\Common::getInstance()->setFrameTimeZone($config->get_config('frame_time_zone'));
+		//SET TIME LIMIT
+		\core\Common::getInstance()->setFrameTimeLimit();
+		//RUN ACTION
+		$this->runAction();
+	}
+	
+	/**
+	 * RUN ACTION
+	 */
+	public function runAction()
+	{
+		$router = new \core\Router();
+		$router->setAction();
+		if(file_exists(APP_PATH . '/controller/' . $router->class . '.php'))
+		{
+			$class = '\\controller\\' . $router->class;
+			$method = $router->method;
+			$class = new $class();
+			if(method_exists($class, $method))
+			{
+				$class->$method();
+			}
+			else
+			{
+				\core\Exceptions::getInstance()->show404();
+			}
+		}
+		else
+		{
+			\core\Exceptions::getInstance()->show404();
+		}
 	}
 }
 ?>
