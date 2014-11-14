@@ -1,5 +1,10 @@
 <?php
+/**
+ * PDO
+ * @author fanzw
+ */
 namespace core;
+
 class Database
 {
 	public $pdo;
@@ -9,15 +14,11 @@ class Database
 
 	public static function getInstance($config = 'default')
 	{
-		if(!empty(self::$_instance->pdo))
+		if(empty(self::$_instance[$config]->pdo) || !(self::$_instance[$config] instanceof self))
 		{
-			$status = self::$_instance->pdo->getAttribute(\PDO::ATTR_SERVER_INFO);//判断是否mysql gone away
-		}
-		if(!(self::$_instance instanceof self) || self::$_instance->config != $config || empty(self::$_instance->pdo) || $status == 'MySQL server has gone away')
-		{
-			self::$_instance = new self($config);
+			self::$_instance[$config] = new self($config);
  		}
-		return self::$_instance;
+		return self::$_instance[$config];
 	}
 	
 	private function __construct($config)

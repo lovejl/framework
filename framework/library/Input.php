@@ -16,7 +16,7 @@ class Input
 		return self::$_self;
 	}
 	
-	public function input($name)
+	public function get($name)
 	{
 		if(isset($_POST[$name]))
 		{

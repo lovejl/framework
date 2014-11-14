@@ -1,11 +1,16 @@
 <?php
+/**
+ * PRODUCT MOD
+ * @author fanzw
+ */
 namespace model;
-class WelcomeMod extends \core\Model
+
+class ProductMod extends \core\Model
 {
 	private $tableName = 'info';
 	public function __construct()
 	{
-		parent::connect();
+		parent::connect('product');
 	}
 	
 	public function getInfo()
@@ -19,11 +24,11 @@ class WelcomeMod extends \core\Model
 		return false;
 	}
 	
-	public function insInfo($name, $content)
+	public function insInfo($name, $content, $pic)
 	{
-		$sql = "INSERT INTO $this->tableName (name, content, addTime) values (?,?,?)";
+		$sql = "INSERT INTO $this->tableName (name, content, pic, addTime) values (?,?,?,?)";
 		$stmt = $this->db->prepare($sql);
-		if($stmt->execute(array($name, $content,$_SERVER['REQUEST_TIME'])))
+		if($stmt->execute(array($name, $content,$pic,$_SERVER['REQUEST_TIME'])))
 		{
 			return true;
 		}

@@ -1,4 +1,8 @@
 <?php
+/**
+ * LOG LIBRARY
+ * @author fanzw
+ */
 namespace library;
 
 class Log
@@ -19,6 +23,10 @@ class Log
 	public function log_message($msg, $name = 'log')
 	{
 		$file = APP_PATH . '/log/' . $name . '_' . date('Y-m-d') . '.log';
+		if(!is_dir(APP_PATH . '/log'))
+		{
+			mkdir(APP_PATH . '/log', 0777, true);
+		}
 		$message = '[' . date("Y-m-d H:i:s") . ']';
 		$message .= '[' . $msg . ']' . "\n";
 		return error_log($message, 3, $file);

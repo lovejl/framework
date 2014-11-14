@@ -2,10 +2,17 @@
 /**
  * DEFAULT DB CONFIG
  */
-$config['default'] = array(
+$config['ote'] = array(
 	'hostname' => '127.0.0.1',
-	'database' => 'test',
+	'database' => 'ote',
 	'username' => 'root',
-	'password' => '123698745'
+	'password' => ''
+);
+
+$config['product'] = array(
+		'hostname' => '127.0.0.1',
+		'database' => 'product',
+		'username' => 'root',
+		'password' => ''
 );
 ?>

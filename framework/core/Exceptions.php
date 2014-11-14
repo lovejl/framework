@@ -1,4 +1,8 @@
 <?php
+/**
+ * EXCEPTIONS LIBRARY
+ * @author fanzw
+ */
 namespace core;
 
 class Exceptions

@@ -1,9 +1,19 @@
 <?php
+/**
+ * CONTROLLER CORE
+ * @author fanzw
+ */
 namespace core;
 
 class Controller
-{
-	public static $load;
+{	
+	public $input;
+	
+	public $log;
+	
+	public $uri;
+	
+	public $upload;
 	
 	public function view($name, $data)
 	{
@@ -17,6 +27,12 @@ class Controller
 	
 	public function library($name)
 	{
-		return \core\Library::getInstance()->getLibrary($name);
+		if(is_array($name))
+		{
+			foreach($name as $value)
+			{
+				$this->$value = \core\Library::getInstance()->getLibrary($value);
+			}
+		}
 	}
 }

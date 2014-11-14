@@ -1,4 +1,8 @@
 <?php
+/**
+ * CONFIG CORE
+ * @author fanzw
+ */
 namespace core;
 
 class Config
