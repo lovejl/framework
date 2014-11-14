@@ -7,7 +7,8 @@ class Core
 	
 	private function __construct(){}
 	
-	public static function getInstance(){
+	public static function getInstance()
+	{
 		if(empty(self::$_self)) 
 		{
 			self::$_self = new Core();
@@ -23,17 +24,15 @@ class Core
 		//SET AUTO LOADER
 		include 'core/AutoLoader.php';
 		\core\AutoLoader::getInstance()->registerAutoloader();
-		//GET CONFIG
-		$config = new \core\Config();
 		//SET FRAME EXCEPTIONS
-		if($config->get_config('frame_exception') == 'on')
+		if(\core\Config::getInstance()->get_config('frame_exception') == 'on')
 		{
 			\core\Exceptions::getInstance()->registerExceptions();
 		}
 		//SET ENVIRONMENT
-		\core\Common::getInstance()->setFrameEnvironment($config->get_config('frame_environment'));
+		\core\Common::getInstance()->setFrameEnvironment(\core\Config::getInstance()->get_config('frame_environment'));
 		//SET TIME ZONE
-		\core\Common::getInstance()->setFrameTimeZone($config->get_config('frame_time_zone'));
+		\core\Common::getInstance()->setFrameTimeZone(\core\Config::getInstance()->get_config('frame_time_zone'));
 		//SET TIME LIMIT
 		\core\Common::getInstance()->setFrameTimeLimit();
 		//RUN ACTION

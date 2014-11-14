@@ -9,6 +9,7 @@ define('APP_PATH', $app_path);
  * FRAME FOLDER PATH
  */
 $frame_path = realpath(__DIR__ . '/../../framework');
+define('FRAME_PATH', $frame_path);
 
 /**
  * SET PATH

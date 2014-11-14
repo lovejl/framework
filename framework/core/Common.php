@@ -7,7 +7,8 @@ class Common
 	
 	private function __construct(){}
 	
-	public static function getInstance(){
+	public static function getInstance()
+	{
 		if(empty(self::$_self))
 		{
 			self::$_self = new Common();

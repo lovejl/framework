@@ -2,7 +2,20 @@
 namespace core;
 
 class Config
-{
+{	
+	private static $_self;
+	
+	private function __construct(){}
+	
+	public static function getInstance()
+	{
+		if(empty(self::$_self))
+		{
+			self::$_self = new Config();
+		}
+		return self::$_self;
+	}
+	
 	private static $_config = FALSE;
 	
 	public function get_config($name = '', $path = 'config')

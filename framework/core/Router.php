@@ -17,10 +17,9 @@ class Router
 	
 	public function __construct()
 	{
-		$config = new \core\Config();
-		$this->default_class = $config->get_config('default_class', 'router');
-		$this->default_method = $config->get_config('default_method', 'router');
-		$this->router = $config->get_config('router', 'router');
+		$this->default_class = \core\Config::getInstance()->get_config('default_class', 'router');
+		$this->default_method = \core\Config::getInstance()->get_config('default_method', 'router');
+		$this->router = \core\Config::getInstance()->get_config('router', 'router');
 	}
 	
 	public function setAction()
